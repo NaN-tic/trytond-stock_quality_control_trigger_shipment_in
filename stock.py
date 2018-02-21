@@ -2,13 +2,14 @@
 # copyright notices and license terms.
 from trytond.pool import PoolMeta
 
-from trytond.modules.quality_control_trigger import QualityControlTriggerMixin
+from trytond.modules.quality_control_trigger.quality import (
+    QualityControlTriggerMixin)
 
 __all__ = ['QualityTemplate', 'ShipmentIn']
-__metaclass__ = PoolMeta
 
 
 class QualityTemplate:
+    __metaclass__ = PoolMeta
     __name__ = 'quality.template'
 
     @classmethod
@@ -21,7 +22,7 @@ class QualityTemplate:
         return models
 
 
-class ShipmentIn(QualityControlTriggerMixin):
+class ShipmentIn(QualityControlTriggerMixin, object):
     __metaclass__ = PoolMeta
     __name__ = 'stock.shipment.in'
 

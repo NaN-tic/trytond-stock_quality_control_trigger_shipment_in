@@ -12,33 +12,19 @@ Imports::
     >>> from dateutil.relativedelta import relativedelta
     >>> from decimal import Decimal
     >>> from proteus import config, Model, Wizard
+    >>> from trytond.tests.tools import activate_modules
     >>> from trytond.modules.company.tests.tools import create_company, \
     ...     get_company
     >>> today = datetime.date.today()
 
-Create database::
-
-    >>> config = config.set_trytond()
-    >>> config.pool.test = True
-
 Install stock_quality_control_trigger_shipment_in::
 
-    >>> Module = Model.get('ir.module')
-    >>> modules = Module.find([
-    ...         ('name', '=', 'stock_quality_control_trigger_shipment_in'),
-    ...         ])
-    >>> Module.install([x.id for x in modules], config.context)
-    >>> Wizard('ir.module.install_upgrade').execute('upgrade')
+    >>> config = activate_modules('stock_quality_control_trigger_shipment_in')
 
 Create company::
 
     >>> _ = create_company()
     >>> company = get_company()
-
-Reload the context::
-
-    >>> User = Model.get('res.user')
-    >>> config._context = User.get_preferences(True, config.context)
 
 Create supplier and customer::
 
@@ -161,8 +147,8 @@ Receive products::
     >>> shipment_in.reload()
     >>> shipment_in.state
     u'received'
-    >>> set([m.state for m in shipment_in.incoming_moves])
-    set([u'done'])
+    >>> list(set([m.state for m in shipment_in.incoming_moves]))
+    [u'done']
 
 Check the created Quality Tests::
 
