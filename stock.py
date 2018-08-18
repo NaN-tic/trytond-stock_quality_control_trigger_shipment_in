@@ -8,8 +8,7 @@ from trytond.modules.quality_control_trigger.quality import (
 __all__ = ['QualityTemplate', 'ShipmentIn']
 
 
-class QualityTemplate:
-    __metaclass__ = PoolMeta
+class QualityTemplate(metaclass=PoolMeta):
     __name__ = 'quality.template'
 
     @classmethod
@@ -22,8 +21,7 @@ class QualityTemplate:
         return models
 
 
-class ShipmentIn(QualityControlTriggerMixin, object):
-    __metaclass__ = PoolMeta
+class ShipmentIn(QualityControlTriggerMixin, object, metaclass=PoolMeta):
     __name__ = 'stock.shipment.in'
 
     @classmethod

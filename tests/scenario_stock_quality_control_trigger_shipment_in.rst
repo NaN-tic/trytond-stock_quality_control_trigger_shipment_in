@@ -46,7 +46,6 @@ Create products::
     >>> template1.default_uom = unit
     >>> template1.type = 'goods'
     >>> template1.list_price = Decimal('20')
-    >>> template1.cost_price = Decimal('8')
     >>> template1.save()
     >>> product1.template = template1
     >>> product1.save()
@@ -56,7 +55,6 @@ Create products::
     >>> template2.default_uom = unit
     >>> template2.type = 'goods'
     >>> template2.list_price = Decimal('20')
-    >>> template2.cost_price = Decimal('8')
     >>> template2.save()
     >>> product2.template = template2
     >>> product2.save()
@@ -146,9 +144,9 @@ Receive products::
     >>> ShipmentIn.receive([shipment_in.id], config.context)
     >>> shipment_in.reload()
     >>> shipment_in.state
-    u'received'
+    'received'
     >>> list(set([m.state for m in shipment_in.incoming_moves]))
-    [u'done']
+    ['done']
 
 Check the created Quality Tests::
 
