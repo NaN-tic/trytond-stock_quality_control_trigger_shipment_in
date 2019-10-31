@@ -69,7 +69,6 @@ Create Quality Configuration::
     >>> product_model, = IrModel.find([('model','=','product.product')])
     >>> shipment_in_model, = IrModel.find([('model','=','stock.shipment.in')])
     >>> configuration = Configuration()
-    >>> configuration.name = 'Configuration'
     >>> product_config_line = ConfigLine()
     >>> configuration.allowed_documents.append(product_config_line)
     >>> product_config_line.quality_sequence = sequence
